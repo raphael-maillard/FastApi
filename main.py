@@ -1,9 +1,19 @@
-from typing import Optional
-
 from fastapi import FastAPI
 import requests 
+from fastapi.middleware.cors import CORSMiddleware
 
 app= FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 KEY_API_WEATHER = "7fc41fc637a8312deb794c4ffd5a28e9"
 
@@ -20,3 +30,5 @@ def read_item(zip_code: str):
         return{ "CodeError" : r.status_code }
     else :
         return {"Result": r.json()} 
+    
+    # uvicorn main:app --relod...
