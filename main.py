@@ -32,3 +32,4 @@ def read_item(zip_code: str):
         return {"Result": r.json()} 
     
     # uvicorn main:app --relod...
+    #  uvicorn main:app  --reload --host 0.0.0.0 --port 8000
